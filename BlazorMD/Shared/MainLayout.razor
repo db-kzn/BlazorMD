@@ -1,20 +1,6 @@
 ﻿@inherits LayoutComponentBase
 
-@*<div class="sidebar">
-        <NavMenu />
-    </div>
-
-    <div class="main">
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
-
-        <div class="content px-4">
-            @Body
-        </div>
-    </div>*@
-
-<MatAppBarContainer>
+<MatAppBarContainer style="min-width: 100%; min-height: 100%; position: relative;">
     <MatAppBar Fixed="true">
         <MatAppBarRow>
             <MatAppBarSection>
@@ -72,7 +58,7 @@
             </MatDrawer>
         </MatDrawerContainer>
 
-        <MatDrawerContent Style="width: 100vw; height: 100vh;">
+        <MatDrawerContent Style="display: flex; width: 100%; height: 100%;">
             <div Style="margin: 1em; padding: 1em;" class="container">
                 @Body
             </div>
