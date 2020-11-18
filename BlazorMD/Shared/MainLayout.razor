@@ -1,15 +1,89 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="sidebar">
-    <NavMenu />
-</div>
-
-<div class="main">
-    <div class="top-row px-4">
-        <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+@*<div class="sidebar">
+        <NavMenu />
     </div>
 
-    <div class="content px-4">
-        @Body
-    </div>
-</div>
+    <div class="main">
+        <div class="top-row px-4">
+            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+        </div>
+
+        <div class="content px-4">
+            @Body
+        </div>
+    </div>*@
+
+<MatAppBarContainer>
+    <MatAppBar Fixed="true">
+        <MatAppBarRow>
+            <MatAppBarSection>
+                <MatIconButton Icon="menu" OnClick="@((e) => ButtonClicked())"></MatIconButton>
+                <MatAppBarTitle>Blazor Material Design App</MatAppBarTitle>
+            </MatAppBarSection>
+
+            <MatAppBarSection Align="@MatAppBarSectionAlign.End">
+
+                <NavLink class="text-white nav-link" href="" Match="NavLinkMatch.All">
+                    Home
+                </NavLink>
+
+                <NavLink class="text-white nav-link" href="Counter">
+                    Counter
+                </NavLink>
+
+                <NavLink class="text-white nav-link" href="FetchData">
+                    FetchData
+                </NavLink>
+
+            </MatAppBarSection>
+        </MatAppBarRow>
+    </MatAppBar>
+
+    <MatAppBarContent>
+        <MatDrawerContainer>
+            <MatDrawer Opened="@Opened" Mode="@MatDrawerMode.Modal">
+                <MatListGroup>
+                    <MatListGroupSubHeader>Dashboard</MatListGroupSubHeader>
+                    <MatList>
+                        <MatListItem>
+                            Post
+                        </MatListItem>
+                        <MatListItem>
+                            Pages
+                        </MatListItem>
+                        <MatListItem>
+                            Media
+                        </MatListItem>
+                    </MatList>
+                    <MatListGroupSubHeader>Account Settings</MatListGroupSubHeader>
+                    <MatList>
+                        <MatListItem>
+                            Profile
+                        </MatListItem>
+                        <MatListItem>
+                            Password
+                        </MatListItem>
+                        <MatListItem>
+                            Logout
+                        </MatListItem>
+                    </MatList>
+                </MatListGroup>
+            </MatDrawer>
+        </MatDrawerContainer>
+
+        <MatDrawerContent Style="width: 100vw; height: 100vh;">
+            <div Style="margin: 1em; padding: 1em;" class="container">
+                @Body
+            </div>
+        </MatDrawerContent>
+    </MatAppBarContent>
+</MatAppBarContainer>
+
+@functions {
+    bool Opened = false;
+    void ButtonClicked()
+    {
+        Opened = !Opened;
+    }
+}
